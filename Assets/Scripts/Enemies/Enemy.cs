@@ -13,7 +13,8 @@ public class Enemy : MonoBehaviour
     public GameObject patrolPosition;
     Vector3 startPosition;
     Vector3 _patrolPosition;
-        
+    public GameObject curWeapon;
+    public GameObject weaponPosition;
 
     NavMeshAgent agent;
 
@@ -21,10 +22,18 @@ public class Enemy : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
-        gameObject.GetComponent<WeaponCarrier>().weapon.GetComponent<Weapon>().isOnLock = false;
         manager = GameObject.FindGameObjectWithTag("manager");
+
+        curWeapon = Instantiate(curWeapon, weaponPosition.transform.position, weaponPosition.transform.rotation);
+        curWeapon.transform.parent = weaponPosition.transform;
+
+        curWeapon.GetComponent<Weapon>().owner = gameObject;
+        curWeapon.GetComponent<Weapon>().isOnLock = false;
+
         startPosition = transform.position;
         _patrolPosition = patrolPosition.transform.position;
+        
+
     }
 
     void Update()
@@ -58,7 +67,7 @@ public class Enemy : MonoBehaviour
                     manager.GetComponent<AlertManager>().approachPlayerPosition = player.transform.position;
                     playerPositioinIdentified = true;
 
-                    GetComponent<WeaponCarrier>().weapon.GetComponent<Weapon>().Shot();
+                    curWeapon.GetComponent<Weapon>().Shot();
                     manager.GetComponent<AlertManager>().SetAlarm();
 
                 }
@@ -78,31 +87,36 @@ public class Enemy : MonoBehaviour
     {
             Vector3 direction = (manager.GetComponent<AlertManager>().approachPlayerPosition - transform.position).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-            transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, 5 * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, 10 * Time.deltaTime);
     }
 
 
     void DistanceToPlayer()
-    {        
-            RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 1000000f))
+    {
+        if (Vector3.Distance(transform.position, player.transform.position) < retreatDistance)
         {
-            if (hit.transform.gameObject == player)
+            Retreat();
+        }
+        else
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position + transform.up, transform.forward, out hit, 1000000f))
             {
-                if (Vector3.Distance(transform.position, player.transform.position) >= retreatDistance)
+
+                if (hit.transform.gameObject == player)
                 {
-                    HoldPosition();
+                    if (Vector3.Distance(transform.position, player.transform.position) >= retreatDistance)
+                    {
+                        HoldPosition();
+                    }
                 }
                 else
                 {
-                    Retreat();
+                    Chase();
                 }
             }
-            else
-            {
-                Chase();
-            }
         }
+        
     }
     void Retreat()
     {
@@ -114,7 +128,7 @@ public class Enemy : MonoBehaviour
 
     void HoldPosition()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) <= GetComponent<WeaponCarrier>().weapon.GetComponent<Weapon>().shootDistance)
+        if (Vector3.Distance(transform.position, player.transform.position) <= curWeapon.GetComponent<Weapon>().shootDistance)
         {
             agent.SetDestination(transform.position);
         }

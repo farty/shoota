@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 8454098354634314686}
   - component: {fileID: 2306633664165793731}
   - component: {fileID: 6430374327858778039}
+  - component: {fileID: 588074341850099934}
   m_Layer: 8
   m_Name: Pistol_double_dragon
   m_TagString: weapon
@@ -340,7 +341,7 @@ Transform:
   m_GameObject: {fileID: 3651475975610584534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -19.254425, y: 1.2146667, z: -0.7192547}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 2284363027614258221}
   - {fileID: 2284363027614258211}
@@ -375,6 +376,7 @@ MonoBehaviour:
   shootSound: {fileID: 6430374327858778039}
   isOnLock: 1
   owner: {fileID: 0}
+  uiIcon: {fileID: 21300000, guid: 382c6654fbbc06140930c02bb7bab948, type: 3}
 --- !u!82 &6430374327858778039
 AudioSource:
   m_ObjectHideFlags: 0
@@ -385,7 +387,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fccc46974bfb74a4498b8793b264e90c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f4a036a7d6f0f164e97836f8c8663df3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -471,6 +473,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &588074341850099934
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3651475975610584534}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1, z: 0.3}
+  m_Center: {x: 0, y: 0.2, z: -0.05}
 --- !u!1 &6480517242417600743
 GameObject:
   m_ObjectHideFlags: 0

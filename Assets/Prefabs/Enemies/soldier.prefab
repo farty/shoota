@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 621836912041128629}
   - component: {fileID: 6655325694612883897}
   - component: {fileID: 1853671850673239037}
-  - component: {fileID: 7336737804803460025}
   m_Layer: 0
   m_Name: soldier
   m_TagString: enemy
@@ -120,6 +119,9 @@ MonoBehaviour:
   fieldOfViewAngle: 50
   retreatDistance: 5
   patrolPosition: {fileID: 3661959639315555616}
+  curWeapon: {fileID: 3651475975610584534, guid: 2a8bc6819e92a5f429c8fe7815f68cad,
+    type: 3}
+  weaponPosition: {fileID: 3101352029698763789}
 --- !u!114 &1853671850673239037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,20 +136,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   curHealth: 0
---- !u!114 &7336737804803460025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3471647964202536947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdc7883e196b7174dbda68d2543354a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 3651475975610584534, guid: 2a8bc6819e92a5f429c8fe7815f68cad, type: 3}
-  weaponPosition: {fileID: 3101352029698763789}
 --- !u!1 &3661959639315555616
 GameObject:
   m_ObjectHideFlags: 0

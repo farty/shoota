@@ -20,6 +20,8 @@ public class Weapon : MonoBehaviour
     public AudioSource shootSound;
     public bool isOnLock = true;
     public GameObject owner;
+    public Sprite uiIcon;
+    GameObject manager;
 
 
 
@@ -28,7 +30,10 @@ public class Weapon : MonoBehaviour
       shootSound = GetComponent<AudioSource>();
       bulletsCur = bullets;
       reloadingCur = reloading;
-        
+
+        manager = GameObject.FindGameObjectWithTag("manager");
+
+
 
     }
 
@@ -56,6 +61,14 @@ public class Weapon : MonoBehaviour
                     Instantiate(bullet, bulletSpawnPosition.transform.position, transform.rotation);
                     bullet.GetComponent<Bullet>().bulletDamage = damage;
                     bullet.GetComponent<Bullet>().owner = owner;
+                    if (manager.GetComponent<AlertManager>().alarm == false)
+                    {
+                        manager.GetComponent<AlertManager>().SetAlarm();
+                    }
+                    else
+                    {
+                        manager.GetComponent<AlertManager>().approachPlayerPosition = transform.position;
+                    }
                 }
                 else
                 {

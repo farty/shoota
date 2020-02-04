@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 7207711644237075976}
   - component: {fileID: 7207711644237075979}
   - component: {fileID: 6832382367186025626}
-  - component: {fileID: 3376120083133032984}
+  - component: {fileID: 7878593843239566096}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   curHealth: 0
---- !u!114 &3376120083133032984
+--- !u!114 &7878593843239566096
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,11 +220,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7207711644237075977}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdc7883e196b7174dbda68d2543354a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 89a5cc09d43149c43b9958360515f917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 3651475975610584534, guid: 2a8bc6819e92a5f429c8fe7815f68cad, type: 3}
+  curWeapon: {fileID: 0}
   weaponPosition: {fileID: 5594009248981374888}
+  weapon_first_slot: {fileID: 3651475975610584534, guid: 2a8bc6819e92a5f429c8fe7815f68cad,
+    type: 3}
+  weapon_second_slot: {fileID: 3651475975610584534, guid: 679d1dbb696c7be4f9b6a88a099b499f,
+    type: 3}
+  weapon_third_slot: {fileID: 0}
+  uiAutoFireSwitcher: {fileID: 0}
+  uiWeaponSwitcher: {fileID: 0}
 --- !u!1 &7207711644323058007
 GameObject:
   m_ObjectHideFlags: 0
