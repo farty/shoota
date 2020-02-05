@@ -61,13 +61,13 @@ public class Weapon : MonoBehaviour
                     Instantiate(bullet, bulletSpawnPosition.transform.position, transform.rotation);
                     bullet.GetComponent<Bullet>().bulletDamage = damage;
                     bullet.GetComponent<Bullet>().owner = owner;
-                    if (manager.GetComponent<AlertManager>().alarm == false)
+                    if (manager.GetComponent<EventSystem>().alarm == false)
                     {
-                        manager.GetComponent<AlertManager>().SetAlarm();
+                        manager.GetComponent<EventSystem>().SetAlarm();
                     }
                     else
                     {
-                        manager.GetComponent<AlertManager>().approachPlayerPosition = transform.position;
+                        manager.GetComponent<EventSystem>().approachPlayerPosition = transform.position;
                     }
                 }
                 else

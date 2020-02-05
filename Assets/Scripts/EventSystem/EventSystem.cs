@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlertManager : MonoBehaviour
+public class EventSystem : MonoBehaviour
 {
     GameObject player;
     public float playersNoiseLevel = 0;

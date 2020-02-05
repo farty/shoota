@@ -42,16 +42,6 @@ public class Enemy : MonoBehaviour
         CombatState();
         PatrolingState();
     }
-    void CombatState()
-    {
-        if (playerPositioinIdentified == true)
-        {
-            RotateToPlayer();
-            DistanceToPlayer();
-        }
-        
-    }
-
     void IdentifyPlayerPosition()
     {
         Vector3 direction = player.transform.position - transform.position;
@@ -64,11 +54,11 @@ public class Enemy : MonoBehaviour
                 if (angle < fieldOfViewAngle / 2)
                 {
 
-                    manager.GetComponent<AlertManager>().approachPlayerPosition = player.transform.position;
+                    manager.GetComponent<EventSystem>().approachPlayerPosition = player.transform.position;
                     playerPositioinIdentified = true;
 
                     curWeapon.GetComponent<Weapon>().Shot();
-                    manager.GetComponent<AlertManager>().SetAlarm();
+                    manager.GetComponent<EventSystem>().SetAlarm();
 
                 }
             }
@@ -78,19 +68,25 @@ public class Enemy : MonoBehaviour
 
             playerPositioinIdentified = true;
 
-            manager.GetComponent<AlertManager>().SetAlarm();
-            manager.GetComponent<AlertManager>().approachPlayerPosition = player.transform.position;
+            manager.GetComponent<EventSystem>().SetAlarm();
+            manager.GetComponent<EventSystem>().approachPlayerPosition = player.transform.position;
         }
     }
+    void CombatState()
+    {
+        if (playerPositioinIdentified == true)
+        {
+            RotateToPlayer();
+            DistanceToPlayer();
+        }
 
+    }
     void RotateToPlayer()
     {
-            Vector3 direction = (manager.GetComponent<AlertManager>().approachPlayerPosition - transform.position).normalized;
+            Vector3 direction = (manager.GetComponent<EventSystem>().approachPlayerPosition - transform.position).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
             transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, 10 * Time.deltaTime);
     }
-
-
     void DistanceToPlayer()
     {
         if (Vector3.Distance(transform.position, player.transform.position) < retreatDistance)
@@ -135,7 +131,7 @@ public class Enemy : MonoBehaviour
     }
     void Chase()
     {
-        agent.SetDestination(manager.GetComponent<AlertManager>().approachPlayerPosition);
+        agent.SetDestination(manager.GetComponent<EventSystem>().approachPlayerPosition);
     }
     public void Alarm()
     {

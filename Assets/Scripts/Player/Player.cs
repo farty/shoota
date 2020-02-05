@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public Slider healthSlider;
-    public Slider noizeSlider;
 
     private Rigidbody rb;
     public GameObject topPart;
@@ -35,8 +33,6 @@ public class Player : MonoBehaviour
         FindClosestEnemy();
         CameraMotor();
         Noize();
-        HpBar();
-        GameObjectsInteraction();
 
     }
     void JoystickMovement()
@@ -87,7 +83,7 @@ public class Player : MonoBehaviour
                         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
                         transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, 50 * Time.deltaTime);
                         GetComponent<WeaponSwitcher>().curWeapon.GetComponent<Weapon>().Shot();
-                        manager.GetComponent<AlertManager>().approachPlayerPosition = transform.position;
+                        manager.GetComponent<EventSystem>().approachPlayerPosition = transform.position;
                     }
                 }
             }
@@ -99,36 +95,15 @@ public class Player : MonoBehaviour
     }
     void Noize()
     {
-        noiseLevel = Mathf.Max(Mathf.Abs(direction.x), Mathf.Abs(direction.z))*5;
-        noizeSlider.value = noiseLevel;
+        noiseLevel = Mathf.Max(Mathf.Abs(direction.x), Mathf.Abs(direction.z))*10;
     }
-    void HpBar()
-    {
-        healthSlider.value = GetComponent<Stats>().curHealth*100/ GetComponent<Stats>().maxHealth;
-    }
-
+   
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, noiseLevel);
 
     }
-
-    void GameObjectsInteraction()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.collider.gameObject.GetComponent<Cryocapsyle>())
-                {
-                    hit.collider.gameObject.GetComponent<Cryocapsyle>().Deactivate();
-                }
-                
-            }
-        }
-    }
+       
 }
 
 

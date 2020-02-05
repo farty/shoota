@@ -9,6 +9,7 @@ TagManager:
   - bullet
   - weapon
   - switch
+  - Demon
   layers:
   - Default
   - TransparentFX
