@@ -31,6 +31,10 @@ public class Stats : MonoBehaviour
     public void TakeDamage(int damage)
     {
         curHealth -= damage;
+        if (gameObject.GetComponent<Enemy>())
+        {
+            gameObject.GetComponent<Enemy>().playerPositioinIdentified = true;
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -38,7 +42,6 @@ public class Stats : MonoBehaviour
         {
             Destroy(collision.gameObject);
             TakeDamage(collision.gameObject.GetComponent<Bullet>().bulletDamage);
-            Debug.Log(collision.gameObject.GetComponent<Bullet>().bulletDamage);
         }
     }
 

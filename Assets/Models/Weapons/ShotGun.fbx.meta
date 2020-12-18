@@ -1,8 +1,47 @@
 fileFormatVersion: 2
 guid: f89b4849ab1a50e4985de2d39d1256a0
 ModelImporter:
-  serializedVersion: 26
-  internalIDToNameTable: []
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Accsesori
+    100002: AmmoOut
+    100004: Bullet
+    100006: Main
+    100008: Pump
+    100010: Shell
+    100012: //RootNode
+    100014: Trigger
+    400000: Accsesori
+    400002: AmmoOut
+    400004: Bullet
+    400006: Main
+    400008: Pump
+    400010: Shell
+    400012: //RootNode
+    400014: Trigger
+    2100000: Metal
+    2100002: Wood
+    2300000: Accsesori
+    2300002: AmmoOut
+    2300004: Bullet
+    2300006: Main
+    2300008: Pump
+    2300010: Shell
+    2300012: Trigger
+    3300000: Accsesori
+    3300002: AmmoOut
+    3300004: Bullet
+    3300006: Main
+    3300008: Pump
+    3300010: Shell
+    3300012: Trigger
+    4300000: AmmoOut
+    4300002: Accsesori
+    4300004: Shell
+    4300006: Bullet
+    4300008: Trigger
+    4300010: Pump
+    4300012: Main
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -45,19 +84,18 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    skinWeightsMode: 0
-    maxBonesPerVertex: 4
-    minBoneWeight: 0.001
-    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -66,11 +104,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 3
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -80,7 +117,6 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.099999994
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

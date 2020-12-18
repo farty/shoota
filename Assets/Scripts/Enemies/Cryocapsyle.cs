@@ -10,7 +10,6 @@ public class Cryocapsyle : MonoBehaviour
     public bool isDeactivated;
     void Start()
     {
-        manager = GameObject.FindGameObjectWithTag("manager");
         player = GameObject.FindGameObjectWithTag("Player");
 
     }
@@ -22,16 +21,12 @@ public class Cryocapsyle : MonoBehaviour
     }
 
     void Unfreeze()
-    {
-        if (manager.GetComponent<EventSystem>().alarm == true)
-        {
+    {       
             if(isDeactivated == false)
             {
                 Destroy(gameObject);
                 Instantiate(unitInside, transform.position, Quaternion.identity);
-                unitInside.GetComponent<Enemy>().Alarm();
-            }
-        }
+            }        
         
     }
 

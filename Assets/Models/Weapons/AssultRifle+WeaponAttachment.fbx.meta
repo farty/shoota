@@ -1,8 +1,70 @@
 fileFormatVersion: 2
 guid: 5792131a06be78f48beef84b9da04e0d
 ModelImporter:
-  serializedVersion: 26
-  internalIDToNameTable: []
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Aim
+    100002: //RootNode
+    100004: Bullet
+    100006: Custom
+    100008: Fire_Button
+    100010: Grip_UV
+    100012: Mag_Big
+    100014: Mag_S
+    100016: Main
+    100018: Reflex1
+    100020: Sillencer
+    100022: Spanner
+    100024: wrap
+    400000: Aim
+    400002: //RootNode
+    400004: Bullet
+    400006: Custom
+    400008: Fire_Button
+    400010: Grip_UV
+    400012: Mag_Big
+    400014: Mag_S
+    400016: Main
+    400018: Reflex1
+    400020: Sillencer
+    400022: Spanner
+    400024: wrap
+    2100000: Wood
+    2100002: Metal
+    2100004: Reflex
+    2300000: Aim
+    2300002: Bullet
+    2300004: Fire_Button
+    2300006: Grip_UV
+    2300008: Mag_Big
+    2300010: Mag_S
+    2300012: Main
+    2300014: Reflex1
+    2300016: Sillencer
+    2300018: Spanner
+    2300020: wrap
+    3300000: Aim
+    3300002: Bullet
+    3300004: Fire_Button
+    3300006: Grip_UV
+    3300008: Mag_Big
+    3300010: Mag_S
+    3300012: Main
+    3300014: Reflex1
+    3300016: Sillencer
+    3300018: Spanner
+    3300020: wrap
+    4300000: Main
+    4300002: wrap
+    4300004: Bullet
+    4300006: Spanner
+    4300008: Fire_Button
+    4300010: Mag_S
+    4300012: Aim
+    4300014: Reflex1
+    4300016: Sillencer
+    4300018: Grip_UV
+    4300020: Mag_Big
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -45,19 +107,18 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    skinWeightsMode: 0
-    maxBonesPerVertex: 4
-    minBoneWeight: 0.001
-    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -66,11 +127,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 3
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -80,7 +140,6 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.099999994
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

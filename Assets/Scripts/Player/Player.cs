@@ -11,20 +11,21 @@ public class Player : MonoBehaviour
     public GameObject topPart;
     public GameObject gameCamera;
     public GameObject SwitchButton;
-    GameObject manager;
 
     Vector3 movement;
     private Vector3 direction;
     public float speed = 2;
-    public float noiseLevel;
     public Joystick joystick;
 
+    public GameObject curWeapon;
+    public GameObject weaponPosition;
     void Start()
     {
         gameCamera = Instantiate(gameCamera, transform.position, Quaternion.identity);
         rb = GetComponent<Rigidbody>();
-        noiseLevel = 0;
-        manager = GameObject.FindGameObjectWithTag("manager");
+        curWeapon = Instantiate(curWeapon, weaponPosition.transform.position, weaponPosition.transform.rotation);
+        curWeapon.GetComponent<Weapon>().owner = gameObject;
+        curWeapon.transform.parent = weaponPosition.transform;
     }
     void Update()
     {
@@ -32,20 +33,21 @@ public class Player : MonoBehaviour
         JoystickMovement();
         FindClosestEnemy();
         CameraMotor();
-        Noize();
 
     }
     void JoystickMovement()
     {
-        movement.x = joystick.Horizontal;
-        movement.z = joystick.Vertical;
-        rb.MovePosition(rb.position + movement * speed);
 
-        direction = new Vector3(movement.x, 0, movement.z);
-        if (direction != Vector3.zero)
+        Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        rb.MovePosition(rb.position + input * speed);
+        if (input.x!=0 || input.z !=0)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 1);
+            float xRot = transform.rotation.x + input.x;
+            float zRot = transform.rotation.z + input.z;
+            Quaternion moveRotation = Quaternion.LookRotation(new Vector3(xRot, 0, zRot));
+            transform.rotation = Quaternion.Lerp(transform.rotation, moveRotation, 5 * Time.deltaTime);
         }
+        
 
     }
     void FindClosestEnemy()
@@ -81,29 +83,32 @@ public class Player : MonoBehaviour
                     if (hit.transform.gameObject.CompareTag("enemy") == true)
                     {
                         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-                        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, 50 * Time.deltaTime);
-                        GetComponent<WeaponSwitcher>().curWeapon.GetComponent<Weapon>().Shot();
-                        manager.GetComponent<EventSystem>().approachPlayerPosition = transform.position;
+                        topPart.transform.rotation = Quaternion.Lerp(topPart.transform.rotation, lookRotation, 50 * Time.deltaTime);
+                        curWeapon.GetComponent<Weapon>().Shot();
+                    }
+
+                    else
+                    {
+                        topPart.transform.rotation = Quaternion.Lerp(topPart.transform.rotation, transform.rotation, 10 * Time.deltaTime);
                     }
                 }
             }
-        }          
-     }    
+            else
+            {
+                topPart.transform.rotation = Quaternion.Lerp(topPart.transform.rotation, transform.rotation, 10 * Time.deltaTime);
+
+            }
+        }
+        else
+        {
+            topPart.transform.rotation = Quaternion.Lerp(topPart.transform.rotation, transform.rotation, 10 * Time.deltaTime);
+
+        }
+    }    
     void CameraMotor()
     {
         gameCamera.transform.position = Vector3.Lerp(gameCamera.transform.position, transform.position, 24);
-    }
-    void Noize()
-    {
-        noiseLevel = Mathf.Max(Mathf.Abs(direction.x), Mathf.Abs(direction.z))*10;
-    }
-   
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, noiseLevel);
-
-    }
-       
+    }   
 }
 
 

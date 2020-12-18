@@ -14,11 +14,8 @@ public class Weapon : MonoBehaviour
     public int bullets;
     private int bulletsCur;
     public int damage = 10;
-    public int clips;
     public GameObject bullet;
     public GameObject bulletSpawnPosition;
-    public AudioSource shootSound;
-    public bool isOnLock = true;
     public GameObject owner;
     public Sprite uiIcon;
     GameObject manager;
@@ -27,25 +24,36 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
-      shootSound = GetComponent<AudioSource>();
-      bulletsCur = bullets;
-      reloadingCur = reloading;
-
+        bulletsCur = bullets;
+        reloadingCur = reloading;
         manager = GameObject.FindGameObjectWithTag("manager");
-
-
-
     }
 
-    void Update()
-    {
-        Drop();
-    }
-        
+    
 
     public void Shot()
     {
-        if (isOnLock == false)
+        if (weaponType == "melee")
+        {
+            if (curFireRate <= 0)
+            {
+                curFireRate = fireRate;
+                Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2);
+                foreach(Collider hitCollider in hitColliders)
+                {
+                    if (hitCollider.CompareTag("Player"))
+                    {
+                        hitCollider.GetComponent<Stats>().TakeDamage(damage); 
+                    }
+                }
+            }
+            else
+            {
+                curFireRate -= Time.deltaTime;
+            }
+        }
+
+        if(weaponType == "pistol")
         {
             if (bulletsCur == 0)
             {
@@ -55,20 +63,12 @@ public class Weapon : MonoBehaviour
             {
                 if (curFireRate <= 0)
                 {
-                    shootSound.Play();
                     curFireRate = fireRate;
                     bulletsCur -= 1;
                     Instantiate(bullet, bulletSpawnPosition.transform.position, transform.rotation);
                     bullet.GetComponent<Bullet>().bulletDamage = damage;
                     bullet.GetComponent<Bullet>().owner = owner;
-                    if (manager.GetComponent<EventSystem>().alarm == false)
-                    {
-                        manager.GetComponent<EventSystem>().SetAlarm();
-                    }
-                    else
-                    {
-                        manager.GetComponent<EventSystem>().approachPlayerPosition = transform.position;
-                    }
+
                 }
                 else
                 {
@@ -80,6 +80,7 @@ public class Weapon : MonoBehaviour
                 Reload();
             }
         }
+            
     }
     void Reload()
     {
@@ -89,14 +90,5 @@ public class Weapon : MonoBehaviour
             reloadingCur = reloading;
         }
         else reloadingCur -= Time.deltaTime;
-    }           
-    void Drop()
-    {
-        if (owner != null && owner.GetComponent<Stats>().curHealth <= 0)
-        {
-            owner = null;
-            isOnLock = true;
-            transform.parent = null;
-        }
-    }
+    } 
 }
